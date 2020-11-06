@@ -1,0 +1,80 @@
+<?xml version='1.0'?>
+<schema>
+	<tables>
+		<table>
+			<name>vtiger_sp_act</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_sp_act` (
+  `actid` int(19) NOT NULL DEFAULT '0',
+  `salesorderid` int(19) DEFAULT NULL,
+  `contactid` int(19) DEFAULT NULL,
+  `actdate` date DEFAULT NULL,
+  `adjustment` decimal(25,8) DEFAULT NULL,
+  `subtotal` decimal(25,8) DEFAULT NULL,
+  `total` decimal(25,8) DEFAULT NULL,
+  `taxtype` varchar(25) DEFAULT NULL,
+  `discount_percent` decimal(25,8) DEFAULT NULL,
+  `discount_amount` decimal(25,8) DEFAULT NULL,
+  `s_h_amount` decimal(25,8) DEFAULT NULL,
+  `shipping` varchar(100) DEFAULT NULL,
+  `accountid` int(19) DEFAULT NULL,
+  `sp_actstatus` varchar(200) DEFAULT NULL,
+  `act_no` varchar(100) DEFAULT NULL,
+  `currency_id` int(19) NOT NULL DEFAULT '1',
+  `conversion_rate` decimal(10,3) NOT NULL DEFAULT '1.000',
+  `spcompany` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'Default',
+  PRIMARY KEY (`actid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_sp_actcf</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_sp_actcf` (
+  `actid` int(19) NOT NULL DEFAULT '0',
+  `tags` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`actid`),
+  CONSTRAINT `fk_1_vtiger_sp_actcf` FOREIGN KEY (`actid`) REFERENCES `vtiger_sp_act` (`actid`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_sp_actbillads</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_sp_actbillads` (
+  `actbilladdressid` int(19) NOT NULL DEFAULT '0',
+  `bill_city` varchar(30) DEFAULT NULL,
+  `bill_code` varchar(30) DEFAULT NULL,
+  `bill_country` varchar(30) DEFAULT NULL,
+  `bill_state` varchar(30) DEFAULT NULL,
+  `bill_street` varchar(250) DEFAULT NULL,
+  `bill_pobox` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`actbilladdressid`),
+  CONSTRAINT `fk_1_vtiger_sp_actbillads` FOREIGN KEY (`actbilladdressid`) REFERENCES `vtiger_sp_act` (`actid`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_sp_actshipads</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_sp_actshipads` (
+  `actshipaddressid` int(19) NOT NULL DEFAULT '0',
+  `ship_city` varchar(30) DEFAULT NULL,
+  `ship_code` varchar(30) DEFAULT NULL,
+  `ship_country` varchar(30) DEFAULT NULL,
+  `ship_state` varchar(30) DEFAULT NULL,
+  `ship_street` varchar(250) DEFAULT NULL,
+  `ship_pobox` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`actshipaddressid`),
+  CONSTRAINT `fk_1_vtiger_sp_actshipads` FOREIGN KEY (`actshipaddressid`) REFERENCES `vtiger_sp_act` (`actid`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_sp_actstatushistory</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_sp_actstatushistory` (
+  `historyid` int(19) NOT NULL AUTO_INCREMENT,
+  `actid` int(19) NOT NULL,
+  `accountname` varchar(100) DEFAULT NULL,
+  `total` decimal(10,0) DEFAULT NULL,
+  `sp_actstatus` varchar(200) DEFAULT NULL,
+  `lastmodified` datetime DEFAULT NULL,
+  PRIMARY KEY (`historyid`),
+  KEY `sp_actstatushistory_actid_idx` (`actid`),
+  CONSTRAINT `fk_1_vtiger_sp_actstatushistory` FOREIGN KEY (`actid`) REFERENCES `vtiger_sp_act` (`actid`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+	</tables>
+</schema>

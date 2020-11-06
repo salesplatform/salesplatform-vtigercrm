@@ -1,0 +1,27 @@
+<?xml version='1.0'?>
+<schema>
+	<tables>
+		<table>
+			<name>sp_commercetranzaction</name>
+			<sql><![CDATA[CREATE TABLE `sp_commercetranzaction` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` datetime NOT NULL,
+  `type` varchar(32) NOT NULL,
+  `status` int(3) DEFAULT NULL,
+  `direction` varchar(16) DEFAULT NULL,
+  `error` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>sp_cml_site_settings</name>
+			<sql><![CDATA[CREATE TABLE `sp_cml_site_settings` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `setting_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `key` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `value` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci]]></sql>
+		</table>
+	</tables>
+</schema>

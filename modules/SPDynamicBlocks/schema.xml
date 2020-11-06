@@ -1,0 +1,45 @@
+<?xml version='1.0'?>
+<schema>
+	<tables>
+		<table>
+			<name>vtiger_sp_blocks_configuration</name>
+			<sql><![CDATA[
+CREATE TABLE vtiger_sp_blocks_configuration(
+    sp_blocks_configuration_id INT,
+    module_name VARCHAR(255),
+    field_name VARCHAR(255)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+            ]]></sql>
+		</table>
+		<table>
+			<name>vtiger_sp_blocks_configuration2values</name>
+			<sql><![CDATA[
+CREATE TABLE vtiger_sp_blocks_configuration2values(
+	sp_blocks_configuration_id INT,
+    field_value VARCHAR(255)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+            ]]></sql>
+		</table>
+		<table>
+			<name>vtiger_sp_blocks_configuration2blocks</name>
+			<sql><![CDATA[
+CREATE TABLE vtiger_sp_blocks_configuration2blocks(
+	sp_blocks_configuration_id INT,
+    block_name VARCHAR(255)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+            ]]></sql>
+		</table>
+		<table>
+			<name>vtiger_sp_blocks_configuration_seq</name>
+			<sql><![CDATA[
+CREATE TABLE vtiger_sp_blocks_configuration_seq(
+	id int
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+            ]]></sql>
+		</table>
+	</tables>
+</schema>

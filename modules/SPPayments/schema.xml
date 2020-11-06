@@ -1,0 +1,35 @@
+<?xml version='1.0'?>
+<schema>
+	<tables>
+		<table>
+			<name>sp_payments</name>
+			<sql><![CDATA[CREATE TABLE `sp_payments` (
+  `payid` int(19) NOT NULL DEFAULT '0',
+  `pay_no` varchar(100) NOT NULL,
+  `pay_date` date NOT NULL,
+  `pay_details` varchar(255) DEFAULT NULL,
+  `pay_type` varchar(100) DEFAULT NULL,
+  `payer` int(19) NOT NULL DEFAULT '0',
+  `doc_no` int(19) DEFAULT NULL,
+  `related_to` int(19) NOT NULL DEFAULT '0',
+  `type_payment` varchar(100) DEFAULT NULL,
+  `amount` decimal(25,8) DEFAULT NULL,
+  `spstatus` varchar(200) DEFAULT NULL,
+  `debit` varchar(100) DEFAULT NULL,
+  `coracc_subacc` varchar(100) DEFAULT NULL,
+  `analytics_code` varchar(100) DEFAULT NULL,
+  `target_code` varchar(100) DEFAULT NULL,
+  `spcompany` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'Default',
+  PRIMARY KEY (`payid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>sp_paymentscf</name>
+			<sql><![CDATA[CREATE TABLE `sp_paymentscf` (
+  `payid` int(19) NOT NULL DEFAULT '0',
+  `tags` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`payid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+	</tables>
+</schema>

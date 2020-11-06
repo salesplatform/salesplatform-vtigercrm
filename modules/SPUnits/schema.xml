@@ -1,0 +1,24 @@
+<?xml version='1.0'?>
+<schema>
+	<tables>
+		<table>
+			<name>sp_units</name>
+			<sql><![CDATA[CREATE TABLE `sp_units` (
+  `unitid` int(19) NOT NULL DEFAULT '0',
+  `unit_no` varchar(100) NOT NULL,
+  `unitname` varchar(200) NOT NULL,
+  `usageunit` varchar(200) DEFAULT NULL,
+  `unit_code` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`unitid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>sp_unitscf</name>
+			<sql><![CDATA[CREATE TABLE `sp_unitscf` (
+  `unitid` int(19) NOT NULL DEFAULT '0',
+  `tags` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`unitid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+	</tables>
+</schema>

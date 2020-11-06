@@ -1,0 +1,81 @@
+{header}
+<div style="font-weight: bold;text-decoration: underline">{$orgName}</div>
+<div style="font-weight: bold">Адрес: {$orgBillingAddress}, тел.: {$orgPhone}</div>
+
+
+<h1 style="text-align: center">Акт № {$act_no} от {$act_actdate} г.</h1>
+
+<p>Заказчик: {$account_accountname}</p>
+
+{/header}
+{content}{/content}
+{table_head}
+
+<table border="1" style="font-size: 8pt" cellpadding="2">
+ <tr style="text-align: center; font-weight: bold">
+ <td width="30">№</td>
+ <td width="220">Наименование работы (услуги)</td>
+ <td width="70">Ед. изм.</td>
+ <td width="70">Количество</td>
+ <td width="70">Цена</td>
+ <td width="70">Сумма</td>
+ </tr>
+
+{/table_head}
+
+{services_row}
+ <tr>
+ <td width="30">{$serviceNumber}</td>
+ <td width="220">{$productName}</td>
+ <td width="70" style="text-align: center">{$productUnits}</td>
+ <td width="70" style="text-align: right">{$productQuantity}</td>
+ <td width="70" style="text-align: right">{$productPrice}</td>
+ <td width="70" style="text-align: right">{$productNetTotal}</td>
+ </tr>
+{/services_row}
+
+{summary}
+</table>
+<table border="0" style="font-weight: bold">
+ <tr>
+ <td width="460" style="text-align: right">Итого:</td>
+   <td width="70" style="text-align: right"><table border="1"><tr><td>{$summaryNetTotalServices}</td></tr></table></td>
+ </tr>
+ <tr>
+ <td width="460" style="text-align: right">Без налога (НДС).</td>
+ <td width="70" style="text-align: center"><table border="1"><tr><td>-</td></tr></table></td>
+ </tr>
+ <tr>
+ <td width="460" style="text-align: right">Всего (с учетом НДС):</td>
+ <td width="70" style="text-align: right"><table border="1"><tr><td>{$summaryGrandTotalServices}</td></tr></table></td>
+ </tr>
+</table>
+
+<p style="font-style: italic">
+Всего оказано услуг на сумму: {$summaryGrandTotalServicesLiteral}
+</p>
+<br/>
+<p>
+Вышеперечисленные услуги выполнены полностью и в срок. Заказчик претензий по объему, качеству и срокам оказания услуг не имеет.
+</p>
+
+{/summary}
+
+{ending}
+<table border="0">
+ <tr>
+   <td align="center" colspan="2">
+     Исполнитель: _________ ({$orgDirector})<br/>
+   </td>
+   <td align="center" colspan="2">
+     Заказчик: _________ (____________)
+  </td>
+  </tr>
+  <tr>
+    <td align="right"><span style="font-size: 6pt">подпись</span></td>
+    <td align="left"><br/><br/>М.П.</td>
+    <td align="right"><span style="font-size: 6pt">подпись</span></td>
+    <td align="left"><br/><br/>М.П.</td>
+  </tr>
+</table>
+{/ending}

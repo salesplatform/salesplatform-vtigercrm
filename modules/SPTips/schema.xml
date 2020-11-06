@@ -1,0 +1,37 @@
+<?xml version='1.0'?>
+<schema>
+	<tables>
+		<table>
+			<name>sp_tips_providers</name>
+			<sql><![CDATA[CREATE TABLE `sp_tips_providers` (
+  `provider_id` int(11) NOT NULL AUTO_INCREMENT,
+  `provider_name` varchar(255) DEFAULT NULL,
+  `settings` varchar(1024) DEFAULT '{}',
+  PRIMARY KEY (`provider_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>sp_tips_module_rules</name>
+			<sql><![CDATA[CREATE TABLE sp_tips_module_rules (
+    rule_id int(11) NOT NULL AUTO_INCREMENT,
+    module varchar(127),
+    field varchar(127),
+    provider_id int(11) DEFAULT NULL,
+    type VARCHAR(255),
+    primary key (rule_id),
+    foreign key provider (provider_id) REFERENCES sp_tips_providers(provider_id) on delete cascade on update cascade
+)ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>sp_tips_dependent_fields</name>
+			<sql><![CDATA[CREATE TABLE sp_tips_dependent_fields (
+	field_id int(11) not null AUTO_INCREMENT,
+    vtiger_fieldname varchar(127),
+    provider_fieldname varchar(127),
+    rule_id int(11),
+    primary key (field_id),
+    foreign key rule (rule_id) references sp_tips_module_rules(rule_id) on delete cascade on update cascade
+)ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+	</tables>
+</schema>

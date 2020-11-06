@@ -1,0 +1,34 @@
+<?xml version='1.0'?>
+<schema>
+	<tables>
+		<table>
+			<name>vtiger_servicecontracts</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_servicecontracts` (
+  `servicecontractsid` int(11) DEFAULT NULL,
+  `start_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
+  `sc_related_to` int(11) DEFAULT NULL,
+  `tracking_unit` varchar(100) DEFAULT NULL,
+  `total_units` decimal(5,2) DEFAULT NULL,
+  `used_units` decimal(5,2) DEFAULT NULL,
+  `subject` varchar(100) DEFAULT NULL,
+  `due_date` date DEFAULT NULL,
+  `planned_duration` varchar(256) DEFAULT NULL,
+  `actual_duration` varchar(256) DEFAULT NULL,
+  `contract_status` varchar(200) DEFAULT NULL,
+  `priority` varchar(200) DEFAULT NULL,
+  `contract_type` varchar(200) DEFAULT NULL,
+  `progress` decimal(5,2) DEFAULT NULL,
+  `contract_no` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_servicecontractscf</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_servicecontractscf` (
+  `servicecontractsid` int(11) NOT NULL,
+  `tags` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`servicecontractsid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+	</tables>
+</schema>

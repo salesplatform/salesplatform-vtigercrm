@@ -1,0 +1,42 @@
+<?xml version='1.0'?>
+<schema>
+	<tables>
+		<table>
+			<name>vtiger_sp_socialconnector</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_sp_socialconnector` (
+  `socialconnectorid` int(11) DEFAULT '0',
+  `message` text,
+  `type` varchar(255) DEFAULT NULL,
+  `vk_status` varchar(255) DEFAULT NULL,
+  `tw_status` varchar(255) DEFAULT NULL,
+  `vk_message_id` varchar(255) DEFAULT NULL,
+  `tw_message_id` varchar(255) DEFAULT NULL,
+  `message_datetime` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_sp_socialconnectorcf</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_sp_socialconnectorcf` (
+  `socialconnectorid` int(11) NOT NULL,
+  `tags` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`socialconnectorid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_sp_socialconnector_providers</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_sp_socialconnector_providers` (
+  `id` int(11) NOT NULL,
+  `provider_name` varchar(45) NOT NULL,
+  `provider_domen` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_sp_socialconnector_settings</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_sp_socialconnector_settings` (
+  `key` varchar(255) DEFAULT NULL,
+  `value` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+	</tables>
+</schema>

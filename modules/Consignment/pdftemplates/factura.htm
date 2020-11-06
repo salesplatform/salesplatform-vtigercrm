@@ -1,0 +1,119 @@
+{header}
+
+<p style="font-size: 6pt; text-align: right; margin: 0; padding: 0">Приложение №1<br/>
+к постановлению Правительства Российской Федерации<br/>
+от 26 декабря 2011 г. № 1137
+</p>
+<h1 style="font-size: 12pt; margin: 0; padding: 0">Счет-фактура № {$consignment_no} от {$consignment_consignmentdate} </h1>
+<h1 style="font-size: 12pt; margin: 0; padding: 0">Исправление № -- от -- </h1>
+<p style="font-size: 8pt; margin: 0; padding: 0">Продавец: {$orgName} <br/>
+Адрес: {$orgBillingAddress} <br/>
+ИНН/КПП продавца: {$orgInn}/{$orgKpp} <br/>
+Грузоотправитель и его адрес: -- <br/>
+Грузополучатель и его адрес: {$account_accountname}, {$billingAddress} <br/>
+К платежно-расчетному документу № {$invoice_invoice_no} от {$invoice_invoicedate} <br/>
+Покупатель: {$account_accountname} <br/>
+Адрес:	{$billingAddress} <br/>
+ИНН / КПП покупателя: {$account_inn}/{$account_kpp}<br/>
+Валюта: наименование, код Российский рубль, 643</p>
+{/header}
+
+{table_head}
+<table border="1" style="font-size: 6pt" cellpadding="2">
+    <tr style="text-align: center">
+	<td width="150" valign="middle" rowspan="2">Наименование товара (описание<br/>выполненных работ, оказанных услуг),<br/>имущественного права</td>
+	<td width="77" valign="middle" colspan="2">Единица<br/>измерения</td>
+        <td width="45" valign="middle" rowspan="2">Коли-<br/>чество<br/>(объем)</td>
+	<td width="55" valign="middle" rowspan="2">Цена (тариф)<br/>за единицу<br/>измерения</td>
+	<td width="80" valign="middle" rowspan="2">Стоимость товаров (работ,<br/>услуг),<br/>имущественных<br/>прав, без налога -<br/>всего</td>
+	<td width="35" valign="middle" rowspan="2">В том<br/>числе<br/>сумма<br/>акциза</td>
+	<td width="55" valign="middle" rowspan="2">Налоговая<br/>ставка</td>
+        <td width="55" valign="middle" rowspan="2">Сумма<br/>налога<br/>предъяв-<br/>ляемая<br/>покупателю</td>
+	<td width="70" valign="middle" rowspan="2">Стоимость товаров<br/>(работ, услуг),<br/>имущественных<br/>прав, с налогом -<br/>всего</td>
+	<td width="85" valign="middle" colspan="2">Страна<br/>происхождения товара</td>
+	<td width="75" valign="middle" rowspan="2">Номер<br/>таможенной<br/>декларации</td>
+	</tr>
+        <tr style="text-align: center">
+	  <td width="27" valign="middle">код</td>
+          <td width="50" valign="middle">условное<br/>обозначение<br/>(национальное)</td>
+	  <td width="35" valign="middle">цифровой<br/>код</td>
+	  <td width="50" valign="middle">краткое<br/>наименование</td>
+	</tr>
+    <tr style="text-align: center">
+	<td width="150">1</td>
+	<td width="27">2</td>
+	<td width="50">2а</td>
+	<td width="45">3</td>
+	<td width="55">4</td>
+	<td width="80">5</td>
+	<td width="35">6</td>
+	<td width="55">7</td>
+	<td width="55">8</td>
+	<td width="70">9</td>
+	<td width="35">10</td>
+	<td width="50">10а</td>
+	<td width="75">11</td>
+    </tr>
+{/table_head}
+
+{table_row}
+    <tr>
+	<td width="150" style="padding: 3px">{$productName}</td>
+	<td width="27" style="text-align: center;padding: 3px">{$productUnitsCode}</td>
+	<td width="50" style="text-align: center;padding: 3px">{$productUnits}</td>
+	<td width="45" style="text-align: right;padding: 3px">{$productQuantity}</td>
+	<td width="55" style="text-align: right;padding: 3px">{$productPrice}</td>
+	<td width="80" style="text-align: right;padding: 3px">{$productNetTotal}</td>
+	<td width="35" style="text-align: center;padding: 3px">--</td>
+	<td width="55" style="text-align: center;padding: 3px">{$productTaxPercent}%</td>
+	<td width="55" style="text-align: right;padding: 3px">{$productTax}</td>
+	<td width="70" style="text-align: right;padding: 3px">{$productTotal}</td>
+	<td width="35" style="text-align: center;padding-left: 3px">{$manufCountryCode}</td>
+	<td width="50" style="text-align: center;padding-left: 3px">{$manufCountry}</td>
+	<td width="75" style="text-align: center;padding: 3px">{$customsId}</td>
+    </tr>
+{/table_row}
+
+{summary}
+    <tr>
+	<td width="327" colspan="7"><span style="font-weight: bold">Всего к оплате</span></td>
+	<td width="80" style="text-align: right;padding: 3px"><span style="font-weight: bold">{$summaryNetTotal}</span></td>
+	<td width="90" colspan="2" style="text-align: center"><span style="font-weight: bold">X</span></td>
+	<td width="55" style="text-align: right"><span style="font-weight: bold">{$summaryTax}</span></td>
+	<td width="70" style="text-align: right"><span style="font-weight: bold">{$summaryGrandTotal}</span></td>
+    </tr>
+</table>
+{/summary}
+
+{ending}
+<p></p>
+<table border="0" style="font-size: 8pt">
+<tr>
+    <td width="200" style="text-align: right">Руководитель организации<br/>или иное уполномоченное лицо</td>
+    <td width="80" style="text-align: center"> __________ </td>
+    <td width="80" style="text-align: center"> <span style="text-decoration: underline">{$orgDirector}</span></td>
+    <td style="text-align: right">Главный бухгалтер<br/>или иное уполномоченное лицо</td>
+    <td width="80" style="text-align: center">  __________ </td>
+    <td width="80" style="text-align: center"> <span style="text-decoration: underline">{$orgBookkeeper}</span></td>
+</tr>
+<tr style="font-size: 6pt; text-align: center">
+    <td width="200"></td><td width="80"> (подпись) </td><td width="80"> (ФИО)</td><td></td><td width="80"> (подпись)</td><td width="80"> (ФИО)</td>
+</tr>
+<tr>
+<td colspan="6"><p></p></td>
+</tr>
+<tr>
+    <td width="200" style="text-align: right">Индивидуальный предприниматель </td>
+    <td width="80" style="text-align: center"> __________ </td>
+    <td width="80" style="text-align: center"> <span style="text-decoration: underline">{$orgEntrepreneur}</span> </td>
+    <td colspan="3" style="text-align: center"> <span style="text-decoration: underline">{$orgEntrepreneurreg}</span> </td>
+</tr>
+<tr style="font-size: 6pt; text-align: center">
+    <td width="200"></td><td width="80"> (подпись) </td><td width="80"> (ФИО) </td><td colspan="3"> (реквизиты свидетельства о государственной <br/>регистрации индивидуального предпринимателя)</td>
+</tr>
+</table>
+<p></p>
+<p style="font-size: 6pt">Примечание 1. Первый экземпляр счета-фактуры, составленного на бумажном носителе - покупателю, второй экземпляр - продавцу.<br/>
+  2. При составлении организацией счета-фактуры в электронном виде показатель "Главный бухгалтер (подпись) (ФИО)" не формируется.
+</p>
+{/ending}

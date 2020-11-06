@@ -1,0 +1,323 @@
+{content}
+
+<!-- Таблица, разделяющая ордер, перфорацию и квитанцию -->
+<table border=0>
+  <tr>
+
+    <td style="width: 360">
+      <!--  Таблица, упорядочивающая элементы ордера -->
+      <table border=0>
+
+        <tr style="text-align: right; font-size: 4pt;"><td>
+          <p>Унифицированная форма КО-1<br />Утверждена постановлением Госкомстата России от 18.08.98 № 88</p>
+        </td></tr>
+
+        <tr><td>
+          <!-- Название организации и подразделения, коды по ОКУД и ОКПО -->
+          <table border="0">
+
+            <tr style="text-align: center; font-size: 6pt;">
+              <td></td>
+              <td></td>
+              <td>
+                <table border="1">
+                  <tr><td>Коды</td></tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr style="font-size: 8pt;">
+              <td style="text-align: center;"></td>
+              <td style="text-align: right;">Форма по ОКУД</td>
+              <td rowspan="3" style="text-align: center;">
+                <!-- Таблица, создающая жирную рамку -->
+                <table border="3">
+                  <tr>
+                    <td style="text-align: center;">
+                      <!-- Таблица, создающая внутреннюю разметку -->
+                      <table border="1">
+                        <tr><td>310001</td></tr>
+                        <tr><td>{$orgOKPO}</td></tr>
+                        <tr><td></td></tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+
+            </tr>
+
+            <tr>
+
+              <td>
+                <table>
+                  <tr><td style="font-size: 6pt;">{$orgName}</td></tr>
+                  <tr><td style="font-size: 6pt;">_________________________________</td></tr>
+                  <tr><td style="font-size: 4pt;">организация</td></tr>
+                </table>
+              </td>
+
+              <td style="text-align: right; font-size: 8pt;">по ОКПО</td>
+
+            </tr>
+
+            <tr>
+
+              <td colspan="2">
+                <table>
+                  <tr><td style="font-size: 6pt;"></td></tr>
+                  <tr><td style="font-size: 6pt;">_____________________________________________________</td></tr>
+                  <tr><td style="font-size: 4pt;">подразделение</td></tr>
+                </table>
+              </td>
+
+            </tr>
+
+          </table>
+
+        </td></tr>
+
+        <tr><td>
+          <!-- Номер документа, дата составления -->
+          <table border="0">
+
+            <tr>
+
+              <td align="center" valign="middle" rowspan="2" style="font-weight: bold; font-size: 8pt;">ПРИХОДНЫЙ КАССОВЫЙ ОРДЕР</td>
+
+              <td>
+                <!-- Номер документа, дата составления -->
+                <table border=1 style="text-align: center; font-size: 6pt;">
+                  <tr>
+                    <td>Номер документа</td>
+                    <td>Дата составления</td>
+                  </tr>
+                </table>
+              </td>
+
+            </tr>
+
+            <tr>
+              <!-- Номер документа, дата составления -->
+              <td>
+                <table border="3" style="text-align: center; font-size: 6pt;">
+                  <tr>
+                    <td>{$payment_doc_no}</td>
+                    <td>{$payment_pay_date}</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+          </table>
+
+        </td></tr>
+
+        <tr><td>
+          <table border="1">
+
+            <tr align="center" valign="middle" style="font-size: 6pt;">
+              <td rowspan="2">Дебет</td>
+              <td colspan="4">Кредит</td>
+              <td rowspan="2">Сумма</td>
+              <td rowspan="2">Код целевого назначения</td>
+              <td rowspan="2"></td>
+            </tr>
+
+            <tr align="center" valign="middle" style="font-size: 4pt;">
+              <td></td>
+              <td>код<br />структурного<br />подразделения</td>
+              <td>корреспондирующий<br />счет,<br />субсчет</td>
+              <td>код<br />аналитического<br />учета</td>
+            </tr>
+
+            <tr align="center" valign="middle" style="font-size: 6pt;">
+              <td>{$payment_debit}</td>
+              <td></td>
+              <td></td>
+              <td>{$payment_coracc_subacc}</td>
+              <td>{$payment_analytics_code}</td>
+              <td>{$payment_amount}</td>
+              <td>{$payment_target_code}</td>
+              <td></td>
+            </tr>
+
+          </table>
+
+        </td></tr>
+
+        <tr><td>
+          <p style="font-size: 6pt;"><br />Принято от:<br />{$payment_payer}</p>
+          <p style="font-size: 6pt;">Основание:<br />{$payment_pay_details}</p>
+          <p style="font-size: 6pt;">Сумма:<br />{$payment_amount_literal}</p>
+          <p style="font-size: 6pt;">В том числе: НДС (Без НДС)</p>
+          <p style="font-size: 6pt;">Приложение:</p>
+
+          <table border="0">
+
+            <tr style="font-size: 6pt;">
+              <td rowspan="2" style="width: 70;"><b>Главный бухгалтер</b></td>
+              <td align="center" style="width: 70;">_____________</td>
+              <td align="center" style="width: 100;">{$orgBookkeeper}</td>
+            </tr>
+
+            <tr align="center" style="font-size: 4pt;">
+              <td style="width: 70;">подпись</td>
+              <td style="width: 100;">расшифровка подписи</td>
+            </tr>
+
+            <tr style="font-size: 6pt;">
+              <td rowspan="2" style="width: 70;"><b>Получил кассир</b></td>
+              <td align="center" style="width: 70;">_____________</td>
+              <td align="center" style="width: 100;"></td>
+            </tr>
+
+            <tr align="center" style="font-size: 4pt;">
+              <td style="width: 70;">подпись</td>
+              <td style="width: 100;">расшифровка подписи</td>
+            </tr>
+
+          </table>
+
+        </td></tr>
+      </table> <!-- Таблица ордера -->
+
+    </td>
+
+    <td style="width: 20">
+      <!-- Перфорация -->
+      <img src="test/logo/perforation.gif" />
+    </td>
+
+    <td style="width: 200">
+      <!-- Квитанция -->
+      <!-- Внешняя таблица. Упорядочивает элементы квитанции -->
+      <table border="0">
+
+        <tr><td>
+          <table border="0">
+            <tr><td align="left" style="font-size: 6pt;">{$orgName}</td></tr>
+            <tr><td align="left" style="font-size: 6pt;">_________________</td></tr>
+            <tr><td align="left" style="font-size: 4pt;">организация</td></tr>
+          </table>
+        </td></tr>
+
+        <tr><td>
+          <p align="left" style="font-size: 6pt;"><b><br />КВИТАНЦИЯ</b></p>
+        </td></tr>
+
+        <tr><td>
+          <!-- к ПКО от -->
+          <table border="0" style="font-size: 6pt;">
+
+            <tr>
+              <td align="right" style="width: 30">к ПКО №</td>
+              <td align="center" style="width: 120">{$payment_doc_no}</td>
+            </tr>
+
+            <tr>
+              <td align="right" style="width: 30"></td>
+              <td align="center" style="width: 120">_____________</td>
+            </tr>
+
+            <tr>
+              <td align="right" style="width: 30">от</td>
+              <td align="center" style="width: 120">{$payment_pay_date}</td>
+            </tr>
+
+            <tr>
+              <td align="left" style="width: 30"></td>
+              <td align="center" style="width: 120">_____________</td>
+            </tr>
+
+          </table>
+        </td></tr>
+
+        <tr style="font-size: 6pt;"><td>
+          <p><br />Принято от<br />{$payment_payer}</p>
+          <p><br />Основание<br />{$payment_pay_details}</p>
+        </td></tr>
+
+        <tr><td>
+          <table>
+
+            <tr align="left" style="font-size: 6pt;">
+              <td rowspan="3">Сумма</td>
+              <td><b>{$payment_amount}</b></td>
+            </tr>
+
+            <tr align="left" style="font-size: 6pt;">
+              <td>____________________</td>
+            </tr>
+
+            <tr>
+              <td align="left" style="font-size: 4pt;"><b>цифрами</b></td>
+            </tr>
+
+          </table>
+        </td></tr>
+
+        <tr style="font-size: 6pt;"><td>
+          <p><br />{$payment_amount_literal}</p>
+          <p><br />В том числе<br />НДС (Без НДС)</p>
+        </td></tr>
+
+        <tr align="right" style="font-size: 6pt;"><td style="width: 150;">
+          <table>
+            <tr><td>
+              <b>{$payment_pay_date}</b>
+            </td></tr>
+            <tr><td>
+              <b>_______________</b>
+            </td></tr>
+          </table>
+          <p align="left"><b>М.П. (штампа)<br /></b></p>
+        </td></tr>
+
+        <tr><td>
+
+          <table>
+            <tr align="left" style="font-size: 6pt;"><td colspan="2">
+              <b>Главный бухгалтер</b>
+            </td></tr>
+            <tr align="center" style="font-size: 6pt; width: 200;">
+              <td></td>
+              <td>{$orgBookkeeper}</td>
+            </tr>
+            <tr align="center" style="font-size: 6pt;">
+              <td>_____________</td>
+              <td>_____________</td>
+            </tr>
+            <tr align="center" style="font-size: 4pt;">
+              <td align="center">подпись</td>
+              <td align="center">расшифровка подписи</td>
+            </tr>
+          </table>
+
+          <table>
+            <tr align="left" style="font-size: 6pt;"><td colspan="2">
+              <b>Кассир</b>
+            </td></tr>
+            <tr align="center" style="font-size: 6pt; width: 200">
+              <td></td>
+              <td></td>
+            </tr>
+            <tr align="center" style="font-size: 6pt;">
+              <td>_____________</td>
+              <td>_____________</td>
+            </tr>
+            <tr align="center" style="font-size: 4pt;">
+              <td>подпись</td>
+              <td>расшифровка подписи</td>
+            </tr>
+          </table>
+
+        </td></tr>
+
+      </table>
+    </td>
+
+  </tr>
+</table>
+
+{/content}

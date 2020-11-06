@@ -1,0 +1,83 @@
+<?xml version='1.0'?>
+<schema>
+	<tables>
+		<table>
+			<name>vtiger_sp_consignment</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_sp_consignment` (
+  `consignmentid` int(19) NOT NULL DEFAULT '0',
+  `salesorderid` int(19) DEFAULT NULL,
+  `invoiceid` int(19) DEFAULT NULL,
+  `contactid` int(19) DEFAULT NULL,
+  `consignmentdate` date DEFAULT NULL,
+  `adjustment` decimal(25,8) DEFAULT NULL,
+  `subtotal` decimal(25,8) DEFAULT NULL,
+  `total` decimal(25,8) DEFAULT NULL,
+  `taxtype` varchar(25) DEFAULT NULL,
+  `discount_percent` decimal(25,8) DEFAULT NULL,
+  `discount_amount` decimal(25,8) DEFAULT NULL,
+  `s_h_amount` decimal(25,8) DEFAULT NULL,
+  `shipping` varchar(100) DEFAULT NULL,
+  `accountid` int(19) DEFAULT NULL,
+  `sp_consignmentstatus` varchar(200) DEFAULT NULL,
+  `consignment_no` varchar(100) DEFAULT NULL,
+  `currency_id` int(19) NOT NULL DEFAULT '1',
+  `conversion_rate` decimal(10,3) NOT NULL DEFAULT '1.000',
+  `has_goods_consignment` varchar(3) DEFAULT '0',
+  `goods_consignment_no` int(19) DEFAULT NULL,
+  `spcompany` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'Default',
+  PRIMARY KEY (`consignmentid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_sp_consignmentcf</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_sp_consignmentcf` (
+  `consignmentid` int(19) NOT NULL DEFAULT '0',
+  `tags` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`consignmentid`),
+  CONSTRAINT `fk_1_vtiger_sp_consignmentcf` FOREIGN KEY (`consignmentid`) REFERENCES `vtiger_sp_consignment` (`consignmentid`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_sp_consignmentbillads</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_sp_consignmentbillads` (
+  `consignmentbilladdressid` int(19) NOT NULL DEFAULT '0',
+  `bill_city` varchar(30) DEFAULT NULL,
+  `bill_code` varchar(30) DEFAULT NULL,
+  `bill_country` varchar(30) DEFAULT NULL,
+  `bill_state` varchar(30) DEFAULT NULL,
+  `bill_street` varchar(250) DEFAULT NULL,
+  `bill_pobox` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`consignmentbilladdressid`),
+  CONSTRAINT `fk_1_vtiger_sp_consignmentbillads` FOREIGN KEY (`consignmentbilladdressid`) REFERENCES `vtiger_sp_consignment` (`consignmentid`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_sp_consignmentshipads</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_sp_consignmentshipads` (
+  `consignmentshipaddressid` int(19) NOT NULL DEFAULT '0',
+  `ship_city` varchar(30) DEFAULT NULL,
+  `ship_code` varchar(30) DEFAULT NULL,
+  `ship_country` varchar(30) DEFAULT NULL,
+  `ship_state` varchar(30) DEFAULT NULL,
+  `ship_street` varchar(250) DEFAULT NULL,
+  `ship_pobox` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`consignmentshipaddressid`),
+  CONSTRAINT `fk_1_vtiger_sp_consignmentshipads` FOREIGN KEY (`consignmentshipaddressid`) REFERENCES `vtiger_sp_consignment` (`consignmentid`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_sp_consignmentstatushistory</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_sp_consignmentstatushistory` (
+  `historyid` int(19) NOT NULL AUTO_INCREMENT,
+  `consignmentid` int(19) NOT NULL,
+  `accountname` varchar(100) DEFAULT NULL,
+  `total` decimal(10,0) DEFAULT NULL,
+  `sp_consignmentstatus` varchar(200) DEFAULT NULL,
+  `lastmodified` datetime DEFAULT NULL,
+  PRIMARY KEY (`historyid`),
+  KEY `sp_consignmentstatushistory_consignmentid_idx` (`consignmentid`),
+  CONSTRAINT `fk_1_vtiger_sp_consignmentstatushistory` FOREIGN KEY (`consignmentid`) REFERENCES `vtiger_sp_consignment` (`consignmentid`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+	</tables>
+</schema>
