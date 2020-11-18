@@ -53,7 +53,6 @@ class Import_Queue_Action extends Vtiger_Action_Controller {
 		}else{
 			$paging = 0;
 		}
-
 		$db->pquery('INSERT INTO vtiger_import_queue VALUES(?,?,?,?,?,?,?,?,?,?)',
 				array($db->getUniqueID('vtiger_import_queue'),
 						$user->id,
@@ -63,7 +62,10 @@ class Import_Queue_Action extends Vtiger_Action_Controller {
 						$request->get('merge_type'),
 						Zend_Json::encode($request->get('merge_fields')),
 						$status,
-						$request->get('lineitem_currency'),
+// SalesPlatform.ru begin
+						empty($request->get('lineitem_currency'))? 0:$request->get('lineitem_currency'),
+						//$request->get('lineitem_currency'),
+// SalesPlatform.ru end
 						$paging));
 	}
 
