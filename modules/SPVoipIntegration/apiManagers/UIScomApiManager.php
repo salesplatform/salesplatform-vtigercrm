@@ -27,7 +27,7 @@ class UIScomApiManager extends AbstractCallApiManager {
         $params = array(
             'access_token' => $accessToken,
             'virtual_phone_number' => $uiscomExtension,
-            'contact' => (String) $number,
+            'contact' => (String) preg_replace("/\\+/", "", $number),
             'first_call' => $this->firstCall, 
             'employee' => $employee
         );
@@ -38,9 +38,10 @@ class UIScomApiManager extends AbstractCallApiManager {
             params => $params
         );
 
-        $UISClient = new UIScomClient($UIScomRequest);
+        $UISClient = new UIScomClient();
         $answer = $UISClient->call($UIScomRequest);
         $answerObject = json_decode($answer);
+
         if ($answerObject->error != NULL) {
             throw new Exception("Error code: ". $answerObject->error->code);
         }

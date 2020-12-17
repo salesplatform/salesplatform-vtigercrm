@@ -13,10 +13,8 @@ class UIScomClient {
      * @param $key
      * @param $secret
      */
-    public function __construct($key, $secret) {
+    public function __construct() {
         $this->_url = \Settings_SPVoipIntegration_Record_Model::getUIScomApiUrl();
-        $this->_key = $key;
-        $this->_secret = $secret;
     }
     
     /**
