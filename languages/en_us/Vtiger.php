@@ -1494,7 +1494,6 @@ $languageStrings = array(
     'LBL_TIPS' => 'Hints',
     'SPTips' => 'Hints',
     'List columns saved successfully' => 'List columns saved successfully',
-    'SPNotifications' => 'Notifications',
     //SalesPlatform.ru end
 );
 

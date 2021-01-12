@@ -160,18 +160,6 @@ class Users_Record_Model extends Vtiger_Record_Model {
 		parent::save();
 		$this->saveTagCloud();
         $this->addDashboardTabs();
-        
-        //SalesPlatform.ru begin #5670
-        if($newUser) {
-            $registrationApi = SPNotifications_API_Model::getInstance();
-            try {
-                $registrationApi->registerUsers([$this]);
-            } catch(AppException $ex) {
-                /* No need handle */
-            }
-            
-        }
-        //SalesPlatform.ru end #5670
 	}
 
     //SalesPlatform.ru begin Fix duplicate user creation

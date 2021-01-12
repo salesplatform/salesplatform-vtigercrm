@@ -398,7 +398,6 @@ $languageStrings = array(
     'SPVoipIntegration' => 'Интеграция с облачными АТС',
     'DynamicBlocks' => 'Динамические блоки',
     'SPDynamicBlocks' => 'Динамические блоки',
-    'SPNotifications' => 'Уведомления',
     //SalesPlatform.ru end
     );
 $jsLanguageStrings = array(

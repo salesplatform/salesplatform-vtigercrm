@@ -18,19 +18,6 @@ class PBXManager_Record_Model extends Vtiger_Record_Model{
         return new self;
     }
     
-    //SalesPlatform.ru begin #5670
-    public function save() {
-        parent::save();
-        
-        $notificationsApi = SPNotifications_API_Model::getInstance();
-        try {
-            $notificationsApi->sendCallChanged($this);
-        } catch(AppException $ex) {
-            /* No need handle */
-        }
-    }
-    //SalesPlatform.ru end #5670
-    
     /**
      * Function to get call details(polling)
      * return <array> calls
@@ -75,17 +62,6 @@ class PBXManager_Record_Model extends Vtiger_Record_Model{
                   AND callstatus='ringing'";
         $db->pquery($query, $recordIds);
         
-        //SalesPlatform.ru begin #5670
-        $notificationsApi = SPNotifications_API_Model::getInstance();
-        foreach($recordIds as $recordId) {
-            $pbxManagerRecord = self::getInstanceById($recordId);
-            try {
-                $notificationsApi->sendCallChanged($pbxManagerRecord);
-            } catch(AppException $ex) {
-                /* No need handle */
-            }
-        }
-        //SalesPlatform.ru end #5670
     }
 
         /**
@@ -104,18 +80,7 @@ class PBXManager_Record_Model extends Vtiger_Record_Model{
                 $recordModel->set($fieldName, $fieldValue);
         }
         
-        //SalesPlatform.ru begin #5670
-        //return $moduleModel->saveRecord($recordModel);
-        $moduleModel->saveRecord($recordModel);
-        $notificationsApi = SPNotifications_API_Model::getInstance();
-        try {
-            $notificationsApi->sendCallChanged($recordModel);
-        } catch(AppException $ex) {
-            /* No need handle */
-        }
-        
-        return $recordModel;
-        //SalesPlatform.ru end #5670
+        return $moduleModel->saveRecord($recordModel);
     }
     
     /**
@@ -148,28 +113,6 @@ class PBXManager_Record_Model extends Vtiger_Record_Model{
         
         $db->pquery($query, $params);
         
-        //SalesPlatform.ru begin #5670
-        $selectSQL = "SELECT pbxmanagerid FROM " . self::moduletableName . " WHERE sourceuuid=?";
-        $selectParams = [$sourceuuid];
-        if($user) {
-            $selectSQL .= " AND user=?";
-            $selectParams[] = $user['id'];
-        }
-        
-        $result = $db->pquery($selectSQL, $selectParams);
-        if($result) {
-            while($resultRow = $db->fetchByAssoc($result)) {
-                $pbxRecordModel = self::getInstanceById($resultRow['pbxmanagerid']);
-                $notificationsApi = SPNotifications_API_Model::getInstance();
-                try {
-                    $notificationsApi->sendCallChanged($pbxRecordModel);
-                } catch(AppException $ex) {
-                    /* No need handle */
-                }
-            }
-        }
-        //SalesPlatform.ru end #5670
-        
         return true;
     }
     
@@ -182,16 +125,6 @@ class PBXManager_Record_Model extends Vtiger_Record_Model{
         $query = 'UPDATE '.self::entitytableName.' SET smownerid=? WHERE crmid=?';
         $params = array($userid, $callid);
         $db->pquery($query, $params);
-        //SalesPlatform.ru begin
-        $pbxRecordModel = self::getInstanceById($callid);
-        $notificationsApi = SPNotifications_API_Model::getInstance();
-        try {
-            $notificationsApi->sendCallChanged($pbxRecordModel);
-        } catch(AppException $ex) {
-            /* No need handle */
-        }
-        //SalesPlatform.ru end
-        
         return true;
     }
     
@@ -297,23 +230,6 @@ class PBXManager_Record_Model extends Vtiger_Record_Model{
         $params[] = $sourceuuid;
         
         $db->pquery($query, $params);
-        
-        //SalesPlatform.ru begin
-        $selectSql = "SELECT pbxmanagerid FROM " . self::moduletableName . " WHERE sourceuuid=?";
-        $selectParams = [$sourceuuid];
-        $result = $db->pquery($selectSql, $selectParams);
-        if($result) {
-            while($resultRow = $db->fetchByAssoc($result)) {
-                $pbxRecordModel = self::getInstanceById($resultRow['pbxmanagerid']);
-                $notificationsApi = SPNotifications_API_Model::getInstance();
-                try {
-                    $notificationsApi->sendCallChanged($pbxRecordModel);
-                } catch(AppException $ex) {
-                    /* No need handle */
-                }
-            }
-        }
-        //SalesPlatform.ru end
         
     }
     //SalesPlatform.ru end

@@ -641,7 +641,6 @@ $languageStrings = array(
     'SPDynamicBlocks' => 'Dynamic blocks',
     'LBL_TIPS' => 'Hints',
     'SPTips' => 'Hints',
-    'SPNotifications' => 'Notifications',
     //Salesplatform.ru end
 );
 

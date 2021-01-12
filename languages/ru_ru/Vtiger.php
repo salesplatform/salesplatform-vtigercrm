@@ -1670,7 +1670,6 @@ $languageStrings = array(
     'LBL_TIPS' => 'Подсказки',
     'SPTips' => 'Подсказки',
     'List columns saved successfully' => 'Список столбцов успешно сохранен',
-    'SPNotifications' => 'Уведомления',
     //SalesPlatform.ru end
 );
 $jsLanguageStrings = array(
