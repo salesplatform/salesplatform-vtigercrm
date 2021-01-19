@@ -127,10 +127,17 @@ class Reports_ExportReport_View extends Vtiger_View_Controller {
         $primaryModule = $reportModel->getPrimaryModule();
 		$secondaryModules = $reportModel->getSecondaryModules();
         $modulesList = array($primaryModule);
-        if(stripos($secondaryModules, ':') >= 0){
-            $secmodules = split(':', $secondaryModules);
+// SalesPlatform.ru begin
+//        if(stripos($secondaryModules, ':') >= 0){
+//            $secmodules = split(':', $secondaryModules);
+        if(stripos($secondaryModules, ':') !== false){
+            $secmodules = explode(':', $secondaryModules);
+// SalesPlatform.ru end
             $modulesList = array_merge($modulesList, $secmodules);
         }else{
+// SalesPlatform.ru begin
+	    if(strlen($secondaryModules) > 0)
+// SalesPlatform.ru end
             array_push($modulesList, $secondaryModules);
         }
 		$currentUser = Users_Record_Model::getCurrentUserModel();
